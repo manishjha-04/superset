@@ -282,13 +282,13 @@ export function Menu({
             return (
               <DropdownMenu.Item key={`${child.label}`}>
                 {child.isFrontendRoute ? (
-                  <NavLink
-                    to={child.url || ''}
-                    end
-                    activeClassName="is-active"
-                  >
-                    {child.label}
-                  </NavLink>
+                 <NavLink
+                 to={child.url || ''}
+                 end
+                 className={({ isActive }) => (isActive ? "is-active" : "")}
+               >
+                 {child.label}
+               </NavLink>
                 ) : (
                   <a href={child.url}>{child.label}</a>
                 )}
