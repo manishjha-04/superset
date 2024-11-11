@@ -34,7 +34,7 @@ import {
   ChangeEvent,
 } from 'react';
 
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setItem, LocalStorageKeys } from 'src/utils/localStorageHelpers';
 import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface';
 import Tabs from 'src/components/Tabs';
@@ -643,7 +643,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
       (DB: DatabaseObject) => DB.backend === engine || DB.engine === engine,
     )?.parameters !== undefined;
   const showDBError = validationErrors || dbErrors;
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const dbModel: DatabaseForm =
     // TODO: we need a centralized engine in one place
@@ -761,7 +761,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
   };
 
   const redirectURL = (url: string) => {
-    history.push(url);
+    navigate(url);
   };
 
   // Database import logic

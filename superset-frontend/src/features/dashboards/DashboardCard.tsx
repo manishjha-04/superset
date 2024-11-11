@@ -17,7 +17,7 @@
  * under the License.
  */
 import { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   isFeatureEnabled,
   FeatureFlag,
@@ -62,7 +62,7 @@ function DashboardCard({
   handleBulkDashboardExport,
   onDelete,
 }: DashboardCardProps) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const canEdit = hasPerm('can_write');
   const canDelete = hasPerm('can_write');
   const canExport = hasPerm('can_export');
@@ -144,7 +144,7 @@ function DashboardCard({
     <CardStyles
       onClick={() => {
         if (!bulkSelectEnabled) {
-          history.push(dashboard.url);
+          navigate(dashboard.url);
         }
       }}
     >

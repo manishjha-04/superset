@@ -23,7 +23,7 @@ import {
   t,
 } from '@superset-ui/core';
 import { FunctionComponent, useState, useMemo, useCallback, Key } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import rison from 'rison';
 import {
   createFetchRelated,
@@ -139,7 +139,7 @@ const DatasetList: FunctionComponent<DatasetListProps> = ({
   addSuccessToast,
   user,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const {
     state: {
       loading,
@@ -645,7 +645,7 @@ const DatasetList: FunctionComponent<DatasetListProps> = ({
         </>
       ),
       onClick: () => {
-        history.push('/dataset/add/');
+        navigate('/dataset/add/');
       },
       buttonStyle: 'primary',
     });

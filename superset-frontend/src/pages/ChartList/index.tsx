@@ -44,7 +44,7 @@ import ConfirmStatusChange from 'src/components/ConfirmStatusChange';
 import { TagsList } from 'src/components/Tags';
 import SubMenu, { SubMenuProps } from 'src/features/home/SubMenu';
 import FaveStar from 'src/components/FaveStar';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ListView, {
   Filter,
   FilterOperator,
@@ -163,7 +163,7 @@ function ChartList(props: ChartListProps) {
     user: { userId },
   } = props;
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const {
     state: {
@@ -765,7 +765,7 @@ function ChartList(props: ChartListProps) {
       ),
       buttonStyle: 'primary',
       onClick: () => {
-        history.push('/chart/add');
+        navigate('/chart/add');
       },
     });
 

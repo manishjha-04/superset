@@ -17,7 +17,7 @@
  * under the License.
  */
 import { useMemo, useState, useCallback, ReactElement } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   QueryState,
   styled,
@@ -110,7 +110,7 @@ function QueryList({ addDangerToast }: QueryListProps) {
     useState<QueryObject>();
 
   const theme = useTheme();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleQueryPreview = useCallback(
     (id: number) => {
@@ -442,7 +442,7 @@ function QueryList({ addDangerToast }: QueryListProps) {
           query={queryCurrentlyPreviewing}
           queries={queries}
           fetchData={handleQueryPreview}
-          openInSqlLab={(id: number) => history.push(`/sqllab?queryId=${id}`)}
+          openInSqlLab={(id: number) => navigate(`/sqllab?queryId=${id}`)}
           show
         />
       )}

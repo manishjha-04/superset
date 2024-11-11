@@ -26,7 +26,7 @@ import {
 } from 'react';
 
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { pick } from 'lodash';
 import ButtonGroup from 'src/components/ButtonGroup';
 import Alert from 'src/components/Alert';
@@ -209,7 +209,7 @@ const ResultSet = ({
   const [showSaveDatasetModal, setShowSaveDatasetModal] = useState(false);
   const [alertIsOpen, setAlertIsOpen] = useState(false);
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const logAction = useLogAction({ queryId, sqlEditorId: query.sqlEditorId });
 
@@ -284,7 +284,7 @@ const ResultSet = ({
       if (openInNewWindow) {
         window.open(url, '_blank', 'noreferrer');
       } else {
-        history.push(url);
+        navigate(url);
       }
     } else {
       addDangerToast(t('Unable to create chart without a query id.'));

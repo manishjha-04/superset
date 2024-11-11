@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from 'src/components/Button';
 import { t } from '@superset-ui/core';
 import { useSingleViewResource } from 'src/views/CRUD/hooks';
@@ -54,7 +54,7 @@ function Footer({
   hasColumns = false,
   datasets,
 }: FooterProps) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { createResource } = useSingleViewResource<Partial<DatasetObject>>(
     'dataset',
     t('dataset'),
@@ -80,7 +80,7 @@ function Footer({
       const logAction = createLogAction(datasetObject);
       logEvent(logAction, datasetObject);
     }
-    history.goBack();
+    navigate(-1);
   };
 
   const tooltipText = t('Select a database table.');
@@ -100,7 +100,7 @@ function Footer({
         if (typeof response === 'number') {
           logEvent(LOG_ACTIONS_DATASET_CREATION_SUCCESS, datasetObject);
           // When a dataset is created the response we get is its ID number
-          history.push(`/chart/add/?dataset=${datasetObject.table_name}`);
+          navigate(`/chart/add/?dataset=${datasetObject.table_name}`);
         }
       });
     }

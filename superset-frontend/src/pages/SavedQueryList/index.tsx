@@ -25,7 +25,7 @@ import {
   t,
 } from '@superset-ui/core';
 import { useCallback, useMemo, useState, MouseEvent } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import rison from 'rison';
 import {
   createErrorHandler,
@@ -140,7 +140,7 @@ function SavedQueryList({
     sshTunnelPrivateKeyPasswordFields,
     setSSHTunnelPrivateKeyPasswordFields,
   ] = useState<string[]>([]);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const openSavedQueryImportModal = () => {
     showImportModal(true);
@@ -228,7 +228,7 @@ function SavedQueryList({
     if (openInNewWindow) {
       window.open(`/sqllab?savedQueryId=${id}`);
     } else {
-      history.push(`/sqllab?savedQueryId=${id}`);
+      navigate(`/sqllab?savedQueryId=${id}`);
     }
   };
 

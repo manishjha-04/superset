@@ -28,7 +28,7 @@ import {
   ReactElement,
 } from 'react';
 
-import { RouteComponentProps, useHistory, withRouter } from 'react-router-dom';
+import { RouteComponentProps, useNavigate, withRouter } from 'react-router-dom';
 import moment from 'moment';
 import {
   Behavior,
@@ -446,8 +446,8 @@ const ViewResultsModalTrigger = ({
   showModal: boolean;
   setShowModal: (showModal: boolean) => void;
 }) => {
-  const history = useHistory();
-  const exploreChart = () => history.push(exploreUrl);
+  const navigate = useNavigate();
+  const exploreChart = () => navigate(exploreUrl);
   const theme = useTheme();
   const openModal = useCallback(() => setShowModal(true), []);
   const closeModal = useCallback(() => setShowModal(false), []);
@@ -533,7 +533,7 @@ const SliceHeaderControls = (props: SliceHeaderControlsPropsWithRouter) => {
   const [openScopingModal, scopingModal] = useCrossFiltersScopingModal(
     props.slice.slice_id,
   );
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const queryMenuRef: RefObject<any> = useRef(null);
   const menuRef: RefObject<any> = useRef(null);
@@ -602,7 +602,7 @@ const SliceHeaderControls = (props: SliceHeaderControlsPropsWithRouter) => {
           domEvent.preventDefault();
           window.open(props.exploreUrl, '_blank');
         } else {
-          history.push(props.exploreUrl);
+          navigate(props.exploreUrl);
         }
         break;
       case MenuKeys.ExportCsv:

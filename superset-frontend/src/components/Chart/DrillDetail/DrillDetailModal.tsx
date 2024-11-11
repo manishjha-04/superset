@@ -18,7 +18,7 @@
  */
 
 import { useCallback, useContext, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   BinaryQueryObjectFilterClause,
   css,
@@ -94,7 +94,7 @@ export default function DrillDetailModal({
   onHideModal,
 }: DrillDetailModalProps) {
   const theme = useTheme();
-  const history = useHistory();
+  const navigate = useNavigate();
   const dashboardPageId = useContext(DashboardPageIdContext);
   const { slice_name: chartName } = useSelector(
     (state: { sliceEntities: { slices: Record<number, Slice> } }) =>
@@ -110,8 +110,8 @@ export default function DrillDetailModal({
   );
 
   const exploreChart = useCallback(() => {
-    history.push(exploreUrl);
-  }, [exploreUrl, history]);
+    navigate(exploreUrl);
+  }, [exploreUrl, navigate]);
 
   return (
     <Modal

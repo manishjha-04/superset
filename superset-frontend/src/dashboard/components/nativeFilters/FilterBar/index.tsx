@@ -39,7 +39,7 @@ import {
   usePrevious,
   styled,
 } from '@superset-ui/core';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { updateDataMask, clearDataMask } from 'src/dataMask/actions';
 import { useImmer } from 'use-immer';
 import { isEmpty, isEqual, debounce } from 'lodash';
@@ -121,9 +121,9 @@ const publishDataMask = debounce(
     // this prevents a race condition between updating filters and navigating to Explore
     if (window.location.pathname.includes('/superset/dashboard')) {
       history.location.pathname = window.location.pathname;
-      history.replace({
+      navigate({
         search: newParams.toString(),
-      });
+      }, { replace: true });
     }
   },
   SLOW_DEBOUNCE,
@@ -135,7 +135,7 @@ const FilterBar: FC<FiltersBarProps> = ({
   verticalConfig,
   hidden = false,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const dataMaskApplied: DataMaskStateWithId = useNativeFiltersDataMask();
   const [dataMaskSelected, setDataMaskSelected] =
     useImmer<DataMaskStateWithId>(dataMaskApplied);
@@ -230,10 +230,10 @@ const FilterBar: FC<FiltersBarProps> = ({
   useEffect(() => {
     // embedded users can't persist filter combinations
     if (user?.userId) {
-      publishDataMask(history, dashboardId, updateKey, dataMaskApplied, tabId);
+      publishDataMask(navigate, dashboardId, updateKey, dataMaskApplied, tabId);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dashboardId, dataMaskAppliedText, history, updateKey, tabId]);
+  }, [dashboardId, dataMaskAppliedText, navigate, updateKey, tabId]);
 
   const handleApply = useCallback(() => {
     dispatch(logEvent(LOG_ACTIONS_CHANGE_DASHBOARD_FILTER, {}));

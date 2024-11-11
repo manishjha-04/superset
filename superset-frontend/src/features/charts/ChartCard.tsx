@@ -17,7 +17,7 @@
  * under the License.
  */
 import { isFeatureEnabled, FeatureFlag, t, useTheme } from '@superset-ui/core';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ConfirmStatusChange from 'src/components/ConfirmStatusChange';
 import Icons from 'src/components/Icons';
 import Chart from 'src/types/Chart';
@@ -63,7 +63,7 @@ export default function ChartCard({
   userId,
   handleBulkChartExport,
 }: ChartCardProps) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const canEdit = hasPerm('can_write');
   const canDelete = hasPerm('can_write');
   const canExport = hasPerm('can_export');
@@ -135,7 +135,7 @@ export default function ChartCard({
     <CardStyles
       onClick={() => {
         if (!bulkSelectEnabled && chart.url) {
-          history.push(chart.url);
+          navigate(chart.url);
         }
       }}
     >
