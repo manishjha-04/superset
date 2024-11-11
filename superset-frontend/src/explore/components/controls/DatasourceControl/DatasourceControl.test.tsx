@@ -243,14 +243,11 @@ test('Click on View in SQL Lab', async () => {
 
   const { queryByTestId, getByTestId } = render(
     <>
-      <Route
-        path="/sqllab"
-        render={({ location }) => (
+<Route path="/sqllab"  >{({ location }) => (
           <div data-test="mock-sqllab-route">
             {JSON.stringify(location.state)}
           </div>
-        )}
-      />
+        )}</Route>
       <DatasourceControl {...props} />
     </>,
     {
