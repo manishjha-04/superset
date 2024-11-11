@@ -20,7 +20,7 @@ import { Suspense, useEffect } from 'react';
 import { hot } from 'react-hot-loader/root';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   useLocation,
 } from 'react-router-dom';
@@ -78,7 +78,8 @@ const App = () => (
         data={bootstrapData.common.menu_data}
         isFrontendRoute={isFrontendRoute}
       />
-      <Switch>
+<Routes>
+ 
         {routes.map(({ path, Component, props = {}, Fallback = Loading }) => (
           <Route path={path} key={path}>
             <Suspense fallback={<Fallback />}>
@@ -87,8 +88,8 @@ const App = () => (
               </ErrorBoundary>
             </Suspense>
           </Route>
-        ))}
-      </Switch>
+        ))} 
+</Routes>
       <ToastContainer />
     </RootContextProviders>
   </Router>
