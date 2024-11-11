@@ -118,10 +118,8 @@ const renderWithRouter = ({
     },
   });
   return render(
-    <MemoryRouter initialEntries={[`${path}${search}`]}>
-      <Route path={path}>
-        <ExploreViewContainer />
-      </Route>
+    <MemoryRouter initialEntries={[`${path}${search}`]}><Route path={path} element={ 
+        <ExploreViewContainer /> } />
     </MemoryRouter>,
     { useRedux: true, useDnd: true, initialState },
   );

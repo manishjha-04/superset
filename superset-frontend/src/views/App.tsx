@@ -81,13 +81,12 @@ const App = () => (
 <Routes>
  
         {routes.map(({ path, Component, props = {}, Fallback = Loading }) => (
-          <Route path={path} key={path}>
+          <Route path={path} key={path} element={ 
             <Suspense fallback={<Fallback />}>
               <ErrorBoundary>
                 <Component user={bootstrapData.user} {...props} />
               </ErrorBoundary>
-            </Suspense>
-          </Route>
+            </Suspense> } />
         ))} 
 </Routes>
       <ToastContainer />
