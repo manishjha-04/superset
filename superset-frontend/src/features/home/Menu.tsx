@@ -284,7 +284,7 @@ export function Menu({
                 {child.isFrontendRoute ? (
                   <NavLink
                     to={child.url || ''}
-                    exact
+                    end
                     activeClassName="is-active"
                   >
                     {child.label}
